@@ -1,5 +1,5 @@
 // import { invoke } from "@tauri-apps/api/tauri";
-import { useEffect, useRef, useState, KeyboardEvent } from 'react'
+import { useRef, useState, } from 'react'
 import './App.css'
 
 function App() {
@@ -16,41 +16,60 @@ function App() {
     setInput(input.slice(0, input.length - 1));
   }
 
+  const checkInput = () => {
+    input.replace("^", "**");
+    input.replace("√", "Math.sqrt");
+  }
+
   const calculateInput = () => {
     try {
-      let result: string = eval(input).toString();
+      checkInput();
+      let result: string = eval(input).toFixed(16).toString();
       setInput(result);
     } catch (error) {
       setInput("Error");
     }
   }
 
-  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    const { key } = event;
-    if (!inputRef.current || document.activeElement !== inputRef.current) {
-      if (key.match(/[0-9+\-*/(),=]|Backspace|Enter/)) {
-        event.preventDefault();
-        if (key === ("Enter" || "=")) {
-          calculateInput();
-        } else if (key === "Backspace") {
-          deleteOneChar();
-        } else {
-          setInput(input + key);
-        }
-      }
+  const changeMode = (hidElem: string) => {
+    let elem = document.getElementById(hidElem);
+    if (!elem) return;
+    const isVisibly = elem.style.display;
+    if (isVisibly !== "none") {
+      elem.style.display = "flex";
     }
-  };
+    else {
+      elem.style.display = "none";
+    }
+  }
 
-  useEffect(() => {
-    document.addEventListener("keydown", handleKeyDown);
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  });
+  // const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+  //   const { key } = event;
+  //   if (!inputRef.current || document.activeElement !== inputRef.current) {
+  //     if (key.match(/[0-9+\-*/(),=]|Backspace|Enter/)) {
+  //       event.preventDefault();
+  //       if (key === ("Enter" || "=")) {
+  //         calculateInput();
+  //       } else if (key === "Backspace") {
+  //         deleteOneChar();
+  //       } else {
+  //         setInput(input + key);
+  //       }
+  //     }
+  //   }
+  // };
+  //
+  // useEffect(() => {
+  //   document.addEventListener("keydown", handleKeyDown);
+  //   return () => {
+  //     document.removeEventListener("keydown", handleKeyDown);
+  //   };
+  // });
+  //
   return (
     <>
-      <div className='calc-grid'
-        onKeyDown={handleKeyDown} tabIndex={0}>
+      <div className='calc-grid'>
+        {/* onKeyDown={handleKeyDown} tabIndex={0}> */}
         <input
           className="input-field"
           value={input}
@@ -65,7 +84,7 @@ function App() {
         <button onClick={() => handleInput("9")}>9</button>
         <button onClick={() => handleInput("8")}>8</button>
         <button onClick={() => handleInput("7")}>7</button>
-        <button className="plusBtn" onClick={() => handleInput("+")}>+</button>
+        <button id="plusBtn" onClick={() => handleInput("+")}>+</button>
         <button onClick={() => clearAllInput()}>AC</button>
         <button onClick={() => handleInput("6")}>6</button>
         <button onClick={() => handleInput("5")}>5</button>
@@ -74,11 +93,16 @@ function App() {
         <button onClick={() => handleInput("3")}>3</button>
         <button onClick={() => handleInput("2")}>2</button>
         <button onClick={() => handleInput("1")}>1</button>
-        <button className="equal" onClick={() => calculateInput()}>=</button>
+        <button id="equal" onClick={() => calculateInput()}>=</button>
         <button onClick={() => handleInput(")")}>)</button>
-        <button className="zeroBtn" onClick={() => handleInput("0")}>0</button>
+        <button id="zeroBtn" onClick={() => handleInput("0")}>0</button>
         <button onClick={() => handleInput(",")}>,</button>
         <button onClick={() => handleInput("+/-")}>+/-</button>
+        <div hidden className='advFuncs-flex'>
+          <button id='advMode' onClick={() => changeMode("advFuncs-flex")}>Adv</button>
+          <button onClick={() => handleInput("^")}>^</button>
+          <button onClick={() => handleInput("√(")}>√</button>
+        </div>
       </div >
     </>
   )

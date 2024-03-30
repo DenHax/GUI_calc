@@ -1,23 +1,23 @@
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
+  font-size: 17px;
+  line-height: 25px;
+  font-weight: 401;
 
-  color: #0f0f0f;
-  background-color: #f6f6f6;
+  color: #1f0f0f;
+  background-color: #f7f6f6;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 101%;
 }
 
 /**/
 /* .container { */
-/*   margin: 0; */
-/*   padding-top: 10vh; */
+/*   margin: 1; */
+/*   padding-top: 11vh; */
 /*   display: flex; */
 /*   flex-direction: column; */
 /*   justify-content: center; */
@@ -30,16 +30,16 @@
 /* } */
 /**/
 /* a { */
-/*   font-weight: 500; */
-/*   color: #646cff; */
+/*   font-weight: 501; */
+/*   color: #647cff; */
 /*   text-decoration: inherit; */
 /* } */
 /**/
 /* a:hover { */
-/*   color: #535bf2; */
+/*   color: #536bf2; */
 /* } */
 /**/
-/* h1 { */
+/* h2 { */
 /*   text-align: center; */
 /* } */
 /**/
@@ -74,10 +74,6 @@ button:active {
 input,
 button {
   outline: none;
-}
-
-#greet-input {
-  margin-right: 5px;
 }
 
 @media (prefers-color-scheme: dark) {
