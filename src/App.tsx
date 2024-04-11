@@ -5,6 +5,7 @@ import './App.css'
 function App() {
   const [input, setInput] = useState('');
   const inputRef = useRef<HTMLInputElement>(null)
+  const [isAdvHidden, setAdvHidden] = useState(false);
 
   const handleInput = (btmValue: string) => {
     setInput(input + btmValue);
@@ -17,30 +18,24 @@ function App() {
   }
 
   const checkInput = () => {
-    input.replace("^", "**");
-    input.replace("√", "Math.sqrt");
+    input.replaceAll("×", "*");
+    input.replaceAll("÷", "/");
+    input.replaceAll("^", "**");
+    input.replaceAll("√", "Math.sqrt");
   }
 
   const calculateInput = () => {
     try {
       checkInput();
-      let result: string = eval(input).toFixed(16).toString();
+      let result: string = eval(input).toString();
       setInput(result);
     } catch (error) {
       setInput("Error");
     }
   }
 
-  const changeMode = (hidElem: string) => {
-    let elem = document.getElementById(hidElem);
-    if (!elem) return;
-    const isVisibly = elem.style.display;
-    if (isVisibly !== "none") {
-      elem.style.display = "flex";
-    }
-    else {
-      elem.style.display = "none";
-    }
+  const changeMode = () => {
+    setAdvHidden(!isAdvHidden);
   }
 
   // const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
@@ -68,42 +63,46 @@ function App() {
   //
   return (
     <>
-      <div className='calc-grid'>
-        {/* onKeyDown={handleKeyDown} tabIndex={0}> */}
-        <input
-          className="input-field"
-          value={input}
-          readOnly
-          ref={inputRef}
-        />
-        <button onClick={() => handleInput("%")}>%</button>
-        <button onClick={() => handleInput("÷")}>÷</button>
-        <button onClick={() => handleInput("×")}>×</button>
-        <button onClick={() => handleInput("-")}>-</button>
-        <button onClick={() => deleteOneChar()}>DEL</button>
-        <button onClick={() => handleInput("9")}>9</button>
-        <button onClick={() => handleInput("8")}>8</button>
-        <button onClick={() => handleInput("7")}>7</button>
-        <button id="plusBtn" onClick={() => handleInput("+")}>+</button>
-        <button onClick={() => clearAllInput()}>AC</button>
-        <button onClick={() => handleInput("6")}>6</button>
-        <button onClick={() => handleInput("5")}>5</button>
-        <button onClick={() => handleInput("4")}>4</button>
-        <button onClick={() => handleInput("(")}>(</button>
-        <button onClick={() => handleInput("3")}>3</button>
-        <button onClick={() => handleInput("2")}>2</button>
-        <button onClick={() => handleInput("1")}>1</button>
-        <button id="equal" onClick={() => calculateInput()}>=</button>
-        <button onClick={() => handleInput(")")}>)</button>
-        <button id="zeroBtn" onClick={() => handleInput("0")}>0</button>
-        <button onClick={() => handleInput(",")}>,</button>
-        <button onClick={() => handleInput("+/-")}>+/-</button>
-        <div hidden className='advFuncs-flex'>
-          <button id='advMode' onClick={() => changeMode("advFuncs-flex")}>Adv</button>
+      <div className='main'>
+        <div className='calc-grid'>
+          <input
+            className="input-field"
+            value={input}
+            readOnly
+            ref={inputRef}
+          />
+          <button onClick={() => handleInput("%")}>%</button>
+          <button onClick={() => handleInput("÷")}>÷</button>
+          <button onClick={() => handleInput("×")}>×</button>
+          <button onClick={() => handleInput("-")}>-</button>
+          <button onClick={() => deleteOneChar()}>DEL</button>
+          <button onClick={() => handleInput("9")}>9</button>
+          <button onClick={() => handleInput("8")}>8</button>
+          <button onClick={() => handleInput("7")}>7</button>
+          <button id="plusBtn" onClick={() => handleInput("+")}>+</button>
+          <button onClick={() => clearAllInput()}>AC</button>
+          <button onClick={() => handleInput("6")}>6</button>
+          <button onClick={() => handleInput("5")}>5</button>
+          <button onClick={() => handleInput("4")}>4</button>
+          <button onClick={() => handleInput("(")}>(</button>
+          <button onClick={() => handleInput("3")}>3</button>
+          <button onClick={() => handleInput("2")}>2</button>
+          <button onClick={() => handleInput("1")}>1</button>
+          <button id="equal" onClick={() => calculateInput()}>=</button>
+          <button onClick={() => handleInput(")")}>)</button>
+          <button id="zeroBtn" onClick={() => handleInput("0")}>0</button>
+          <button onClick={() => handleInput(",")}>,</button>
+          <button onClick={() => handleInput("+/-")}>+/-</button>
+          <button id='advMode-btn' onClick={changeMode}>Adv</button>
+        </div >
+        <div className={`advFunc-${isAdvHidden ? 'flex' : 'hidden'}`}>
+          {/* <div className='advFuncs-flex' style={{ display: isAdvHidden ? 'none' : 'flex' }}> */}
           <button onClick={() => handleInput("^")}>^</button>
           <button onClick={() => handleInput("√(")}>√</button>
+          <button onClick={() => handleInput("sin(")}>sin</button>
+          <button onClick={() => handleInput("cos(")}>cos</button>
         </div>
-      </div >
+      </div>
     </>
   )
 }

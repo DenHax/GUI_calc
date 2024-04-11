@@ -1,3 +1,9 @@
+.main {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+}
+
 .calc-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(5px, 1fr)) minmax(5px, 2fr);
@@ -5,9 +11,17 @@
   grid-gap: 1rem;
 }
 
+.advHid {
+  width: 100%;
+}
+
+.advNoHid {
+  width: 80%;
+}
+
 .input-field {
   grid-column-start: 1;
-  grid-column-end: 6;
+  grid-column-end: 5;
   grid-row-start: 1;
   grid-row-end: 3;
   margin-bottom: 10px;
@@ -17,12 +31,12 @@
 }
 
 
-/* #advMode-btn { */
-/*   grid-column-start: 6; */
-/*   grid-column-end: 5; */
-/*   grid-row-start: 1; */
-/*   grid-row-end: 3; */
-/* } */
+#advMode-btn {
+  grid-column-start: 6;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
 
 #plusBtn {
   grid-column-start: 4;
@@ -42,7 +56,11 @@
   grid-row-start: 7;
 }
 
-.advFunc-grid {
+.advFunc-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.advFunc-hidden {
   display: none;
-  grid-template-rows: 1fr;
 }
