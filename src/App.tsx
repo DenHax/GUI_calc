@@ -64,7 +64,7 @@ function App() {
   return (
     <>
       <div className='main'>
-        <div className='calc-grid'>
+        <div className={`calc-grid ${isAdvHidden ? 'advNoHid' : 'advHid'}`}>
           <input
             className="input-field"
             value={input}
