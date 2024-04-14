@@ -14,35 +14,6 @@
   -webkit-text-size-adjust: 101%;
 }
 
-/**/
-/* .container { */
-/*   margin: 1; */
-/*   padding-top: 11vh; */
-/*   display: flex; */
-/*   flex-direction: column; */
-/*   justify-content: center; */
-/*   text-align: center; */
-/* } */
-/**/
-/* .row { */
-/*   display: flex; */
-/*   justify-content: center; */
-/* } */
-/**/
-/* a { */
-/*   font-weight: 501; */
-/*   color: #647cff; */
-/*   text-decoration: inherit; */
-/* } */
-/**/
-/* a:hover { */
-/*   color: #536bf2; */
-/* } */
-/**/
-/* h2 { */
-/*   text-align: center; */
-/* } */
-/**/
 input,
 button {
   border-radius: 8px;

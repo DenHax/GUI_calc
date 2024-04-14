@@ -17,18 +17,25 @@ function App() {
     setInput(input.slice(0, input.length - 1));
   }
 
-  const checkInput = () => {
-    input.replaceAll("×", "*");
-    input.replaceAll("÷", "/");
-    input.replaceAll("^", "**");
-    input.replaceAll("√", "Math.sqrt");
+  const checkInput = (inp: string) => {
+    inp = inp.replaceAll("×", "*");
+    inp = inp.replaceAll("÷", "/");
+    inp = inp.replaceAll("^", "**");
+    inp = inp.replaceAll("√", "Math.sqrt");
+    inp = inp.replaceAll("cos", "Math.cos");
+    inp = inp.replaceAll("sin", "Math.sin");
+    inp = inp.replaceAll("tg", "Math.tan");
+    inp = inp.replaceAll("ln", "Math.log");
+    inp = inp.replaceAll("π", "Math.PI");
+    inp = inp.replaceAll("e", "Math.E");
+    return inp;
   }
 
   const calculateInput = () => {
     try {
-      checkInput();
-      let result: string = eval(input).toString();
-      setInput(result);
+      let resultInp: string = checkInput(input);
+      resultInp = eval(resultInp).toString();
+      setInput(resultInp);
     } catch (error) {
       setInput("Error");
     }
@@ -91,7 +98,7 @@ function App() {
           <button id="equal" onClick={() => calculateInput()}>=</button>
           <button onClick={() => handleInput(")")}>)</button>
           <button id="zeroBtn" onClick={() => handleInput("0")}>0</button>
-          <button onClick={() => handleInput(",")}>,</button>
+          <button onClick={() => handleInput(".")}>.</button>
           <button onClick={() => handleInput("+/-")}>+/-</button>
           <button id='advMode-btn' onClick={changeMode}>Adv</button>
         </div >
@@ -101,6 +108,10 @@ function App() {
           <button onClick={() => handleInput("√(")}>√</button>
           <button onClick={() => handleInput("sin(")}>sin</button>
           <button onClick={() => handleInput("cos(")}>cos</button>
+          <button onClick={() => handleInput("π")}>π</button>
+          <button onClick={() => handleInput("e")}>e</button>
+          <button onClick={() => handleInput("ln(")}>ln</button>
+          <button onClick={() => handleInput("tg(")}>tg</button>
         </div>
       </div>
     </>
