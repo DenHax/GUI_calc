@@ -44,44 +44,42 @@ function App() {
   const changeMode = () => {
     setAdvHidden(!isAdvHidden);
   }
-
   return (
     <>
-      <div className='inputfield'>
-        <input
-          className="input-field"
-          value={input}
-          readOnly
-          ref={inputRef}
-        />
-        <button id='advMode-btn' onClick={changeMode}>Adv</button>
-      </div>
       <div className='main'>
         <div className={`calc-grid ${isAdvHidden ? 'advNoHid' : 'advHid'}`}>
+          <input
+            className="input-field"
+            value={input}
+            readOnly
+            ref={inputRef}
+          />
           <button onClick={() => handleInput("%")}>%</button>
           <button onClick={() => handleInput("÷")}>÷</button>
           <button onClick={() => handleInput("×")}>×</button>
           <button onClick={() => handleInput("-")}>-</button>
           <button onClick={() => deleteOneChar()}>DEL</button>
-          <button onClick={() => handleInput("7")}>7</button>
-          <button onClick={() => handleInput("8")}>8</button>
           <button onClick={() => handleInput("9")}>9</button>
+          <button onClick={() => handleInput("8")}>8</button>
+          <button onClick={() => handleInput("7")}>7</button>
           <button id="plusBtn" onClick={() => handleInput("+")}>+</button>
           <button onClick={() => clearAllInput()}>AC</button>
-          <button onClick={() => handleInput("4")}>4</button>
-          <button onClick={() => handleInput("5")}>5</button>
           <button onClick={() => handleInput("6")}>6</button>
+          <button onClick={() => handleInput("5")}>5</button>
+          <button onClick={() => handleInput("4")}>4</button>
           <button onClick={() => handleInput("(")}>(</button>
-          <button onClick={() => handleInput("1")}>1</button>
-          <button onClick={() => handleInput("2")}>2</button>
           <button onClick={() => handleInput("3")}>3</button>
+          <button onClick={() => handleInput("2")}>2</button>
+          <button onClick={() => handleInput("1")}>1</button>
           <button id="equal" onClick={() => calculateInput()}>=</button>
           <button onClick={() => handleInput(")")}>)</button>
           <button id="zeroBtn" onClick={() => handleInput("0")}>0</button>
           <button onClick={() => handleInput(".")}>.</button>
           <button onClick={() => handleInput("+/-")}>+/-</button>
+          <button id='advMode-btn' onClick={changeMode}>Adv</button>
         </div >
-        <div className={`advFunc-${isAdvHidden ? 'grid' : 'hidden'}`}>
+        <div className={`advFunc-${isAdvHidden ? 'flex' : 'hidden'}`}>
+          {/* <div className='advFuncs-flex' style={{ display: isAdvHidden ? 'none' : 'flex' }}> */}
           <button onClick={() => handleInput("^")}>^</button>
           <button onClick={() => handleInput("√(")}>√</button>
           <button onClick={() => handleInput("sin(")}>sin</button>
@@ -89,9 +87,7 @@ function App() {
           <button onClick={() => handleInput("π")}>π</button>
           <button onClick={() => handleInput("e")}>e</button>
           <button onClick={() => handleInput("ln(")}>ln</button>
-          <button onClick={() => handleInput("abs(")}>|</button>
           <button onClick={() => handleInput("tg(")}>tg</button>
-          <button onClick={() => handleInput("ctg(")}>ctg</button>
         </div>
       </div>
     </>
